@@ -182,17 +182,32 @@ class _BookTypeBtns extends StatefulWidget {
 }
 
 class __BookTypeBtnsState extends State<_BookTypeBtns> {
-  List<Map<String, String>>? bookTypes = [
-    {'bookType': 'Electronic', 'price': 'GHC 50'},
-    {'bookType': 'Hard Cover', 'price': 'GHC 150'},
-    {'bookType': 'Paperback', 'price': 'GHC 75'},
+  List<Map<String, dynamic>>? bookTypes = [
+    {
+      'bookType': 'Electronic',
+      'price': 'GHC 50',
+      'select': false,
+      'button_index': 1
+    },
+    {
+      'bookType': 'Hard Cover',
+      'price': 'GHC 150',
+      'select': true,
+      'button_index': 2
+    },
+    {
+      'bookType': 'Paperback',
+      'price': 'GHC 75',
+      'select': false,
+      'button_index': 3
+    },
   ];
 
-  List<bool> selected = [
-    false,
-    true,
-    false,
-  ];
+  // List<bool> selected = [
+  //   false,
+  //   true,
+  //   false,
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +224,12 @@ class __BookTypeBtnsState extends State<_BookTypeBtns> {
                   height: screenHeight * 0.07,
                   width: screenWidth * 0.3,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    key: ValueKey(u['button_index']),
+                    onPressed: () {
+                      setState(() {
+                        u['select'] = !u['select'];
+                      });
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -218,19 +238,26 @@ class __BookTypeBtnsState extends State<_BookTypeBtns> {
                         Text(
                           u['bookType'] ?? '',
                           style: BookTextStyle.synopsisText.copyWith(
-                            color: BookFanColors.gray,
+                            color: u['select']
+                                ? BookFanColors.white
+                                : BookFanColors.gray,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           u['price']!,
                           style: BookTextStyle.synopsisText.copyWith(
-                              color: BookFanColors.gray, fontSize: 12.0),
+                              color: u['select']
+                                  ? BookFanColors.white
+                                  : BookFanColors.gray,
+                              fontSize: 12.0),
                         ),
                       ],
                     ),
                     style: TextButton.styleFrom(
-                      backgroundColor: BookFanColors.lightgray,
+                      backgroundColor: u['select']
+                          ? BookFanColors.burgundy
+                          : BookFanColors.lightgray,
                       padding:
                           EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
                       shape: RoundedRectangleBorder(
@@ -278,10 +305,12 @@ class _BtnRow extends StatefulWidget {
 }
 
 class __BtnRowState extends State<_BtnRow> {
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -290,16 +319,22 @@ class __BtnRowState extends State<_BtnRow> {
           width: screenWidth * 0.12,
           height: screenHeight * 0.06,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                isSelected = !isSelected;
+              });
+            },
             child: Icon(
-              Icons.bookmark_outline_outlined,
-              color: BookFanColors.dark,
+              isSelected ? Icons.bookmark : Icons.bookmark_outline_outlined,
+              color: isSelected ? BookFanColors.burgundy : BookFanColors.dark,
               size: 26.0,
             ),
             style: ElevatedButton.styleFrom(
-              primary: BookFanColors.gray.withOpacity(0.01),
+              primary: isSelected
+                  ? BookFanColors.white
+                  : BookFanColors.gray.withOpacity(0.01),
               padding: const EdgeInsets.all(2.0),
-              elevation: 1.0,
+              elevation: isSelected ? 0.0 : 1.0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
             ),
