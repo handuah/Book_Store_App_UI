@@ -41,7 +41,7 @@ class _NavScreensState extends State<NavScreens> {
         children: const [
           HomeScreen(),
           CategoriesScreen(),
-          HomeScreen(),
+          CartPage(),
           HomeScreen(),
         ],
       ),
