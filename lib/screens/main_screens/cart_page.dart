@@ -105,31 +105,41 @@ class __BookListState extends State<_BookList> {
               ],
             ),
           ),
-          // confirmDismiss: (swipedDirection) async {
-          //   if (swipedDirection == DismissDirection.endToStart) {
-          //     await showDialog(
-          //         context: context,
-          //         builder: (context) {
-          //           return AlertDialog(
-          //             content: Text(
-          //               'Are you sure you want to delete?',
-          //               style: BookTextStyle.heading_3,
-          //             ),
-          //             actions: [
-          //               ElevatedButton(
-          //                 onPressed: () {},
-          //                 child: Text(
-          //                   'Yes',
-          //                   style: BookTextStyle.buttonText,
-          //                 ),
-          //                 style: ElevatedButton.styleFrom(
-          //                     primary: BookFanColors.burgundy),
-          //               ),
-          //             ],
-          //           );
-          //         });
-          //   }
-          // },
+          confirmDismiss: (swipedDirection) async {
+            if (swipedDirection == DismissDirection.endToStart) {
+              await showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(
+                        'Are you sure you want to delete?',
+                        style: BookTextStyle.heading_2.copyWith(fontSize: 24),
+                      ),
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Yes',
+                            style: BookTextStyle.buttonText,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: BookFanColors.burgundy),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'No',
+                            style: BookTextStyle.buttonText
+                                .copyWith(color: BookFanColors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: BookFanColors.gray),
+                        ),
+                      ],
+                    );
+                  });
+            }
+          },
           child: SizedBox(
             height: screenHeight * 0.22,
             width: screenWidth,
