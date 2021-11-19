@@ -113,7 +113,7 @@ class __BookListState extends State<_BookList> {
                     return AlertDialog(
                       content: Text(
                         'Are you sure you want to delete?',
-                        style: BookTextStyle.heading_2.copyWith(fontSize: 24),
+                        style: BookTextStyle.heading_2.copyWith(fontSize: 20),
                       ),
                       actions: [
                         ElevatedButton(
