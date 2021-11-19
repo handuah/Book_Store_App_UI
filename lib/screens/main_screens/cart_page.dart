@@ -60,91 +60,152 @@ class _BookList extends StatefulWidget {
 }
 
 class __BookListState extends State<_BookList> {
+  List<String> keyValues = ['1', '2'];
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       // color: Colors.blue,
       height: screenHeight * 0.46,
       width: screenWidth,
       child: ListView.separated(
         scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) => Container(
-          height: screenHeight * 0.22,
-          width: screenWidth,
-          // color: Colors.red,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+        itemBuilder: (context, index) => Dismissible(
+          key: Key(keyValues[index]),
+          background: Container(
+            color: Colors.green,
+          ),
+          secondaryBackground: Container(
+            color: Colors.red,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  height: screenHeight,
-                  width: screenWidth * 0.3,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                        'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1449868701l/11127._SY475_.jpg',
-                      ),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: screenWidth * 0.02,
-                ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'The Chronicles of Narnia',
-                      style: BookTextStyle.heading_3.copyWith(fontSize: 16.0),
-                    ),
-                    SizedBox(
-                      height: screenHeight * 0.01,
+                    Icon(
+                      Icons.delete,
+                      color: BookFanColors.white,
+                      size: 30.0,
                     ),
                     Text(
-                      'C.S. Lewis',
-                      style: BookTextStyle.authorNameText
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: screenHeight * 0.01,
-                    ),
-                    Text(
-                      '972-123-5678',
-                      style:
-                          BookTextStyle.authorNameText.copyWith(fontSize: 8.0),
-                    ),
-                    SizedBox(
-                      height: screenHeight * 0.03,
-                    ),
-                    Text(
-                      'GHS 200.0',
-                      style: BookTextStyle.heading_3.copyWith(fontSize: 16.0),
-                    ),
-                    Text(
-                      'Hardcover',
-                      style: BookTextStyle.authorNameText,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [],
+                      'Delete',
+                      style: BookTextStyle.catButtonTextWhite.copyWith(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  width: screenWidth * 0.05,
                 ),
               ],
             ),
           ),
+          // confirmDismiss: (swipedDirection) async {
+          //   if (swipedDirection == DismissDirection.endToStart) {
+          //     await showDialog(
+          //         context: context,
+          //         builder: (context) {
+          //           return AlertDialog(
+          //             content: Text(
+          //               'Are you sure you want to delete?',
+          //               style: BookTextStyle.heading_3,
+          //             ),
+          //             actions: [
+          //               ElevatedButton(
+          //                 onPressed: () {},
+          //                 child: Text(
+          //                   'Yes',
+          //                   style: BookTextStyle.buttonText,
+          //                 ),
+          //                 style: ElevatedButton.styleFrom(
+          //                     primary: BookFanColors.burgundy),
+          //               ),
+          //             ],
+          //           );
+          //         });
+          //   }
+          // },
+          child: SizedBox(
+            height: screenHeight * 0.22,
+            width: screenWidth,
+            // color: Colors.red,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: screenHeight,
+                    width: screenWidth * 0.3,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: const DecorationImage(
+                        image: NetworkImage(
+                          'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1449868701l/11127._SY475_.jpg',
+                        ),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: screenWidth * 0.02,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'The Chronicles of Narnia',
+                        style: BookTextStyle.heading_3.copyWith(fontSize: 16.0),
+                      ),
+                      SizedBox(
+                        height: screenHeight * 0.01,
+                      ),
+                      Text(
+                        'C.S. Lewis',
+                        style: BookTextStyle.authorNameText
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: screenHeight * 0.01,
+                      ),
+                      Text(
+                        '972-123-5678',
+                        style: BookTextStyle.authorNameText
+                            .copyWith(fontSize: 8.0),
+                      ),
+                      SizedBox(
+                        height: screenHeight * 0.03,
+                      ),
+                      Text(
+                        'GHS 200.0',
+                        style: BookTextStyle.heading_3.copyWith(fontSize: 16.0),
+                      ),
+                      Text(
+                        'Hardcover',
+                        style: BookTextStyle.authorNameText,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         separatorBuilder: (context, index) => const Divider(),
-        itemCount: 2,
+        itemCount: keyValues.length,
       ),
     );
   }
