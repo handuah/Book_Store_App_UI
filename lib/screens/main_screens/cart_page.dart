@@ -117,7 +117,12 @@ class __BookListState extends State<_BookList> {
                       ),
                       actions: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              keyValues.removeAt(index);
+                            });
+                            Navigator.pop(context);
+                          },
                           child: Text(
                             'Yes',
                             style: BookTextStyle.buttonText,
@@ -126,7 +131,9 @@ class __BookListState extends State<_BookList> {
                               primary: BookFanColors.burgundy),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           child: Text(
                             'No',
                             style: BookTextStyle.buttonText
