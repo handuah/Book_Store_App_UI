@@ -1,3 +1,4 @@
+import 'package:book_store/screens/main_screens/shipping_page.dart';
 import 'package:book_store/styles/export_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -345,12 +346,12 @@ class __AccountDetailsState extends State<_AccountDetails> {
           height: screenHeight * 0.06,
           child: ElevatedButton(
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const BookInfo(),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Shipping(),
+                ),
+              );
             },
             child: Text(
               'Checkout',
